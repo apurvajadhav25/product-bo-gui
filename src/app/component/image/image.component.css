@@ -1,0 +1,9 @@
+.ui-button-trash {  
+    background: rgb(177, 105, 105);
+    border: rgb(247, 8, 8);
+}
+
+.button {
+    margin: 2px;
+    padding: 2px;
+}

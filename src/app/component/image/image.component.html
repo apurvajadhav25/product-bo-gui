@@ -1,0 +1,18 @@
+
+<div class="card mb-4 shadow-sm">
+   <tr *ngFor="let i of images">
+      <td><img class="bd-placeholder-img card-img-top p-2" width="50%" alt="fy" [src]= "i.path" /></td>
+      <td><button pButton type="button"  icon="pi pi-trash" class="ui-button-info" style="margin-right: .5em" (click)="deleteImage(i.id)"></button></td>
+      <td><p-radioButton name="groupname" value={{i.id}} [(ngModel)]="selectedValues" (onClick)="onCheckboxChange(i.id)"></p-radioButton></td>     
+   </tr>
+</div>
+<div class="text-center">
+   <input class="form-control" type="file"  multiple
+   class="form-control"
+           (change)="onChange($event)">
+ 
+   <button (click)="onUpload()" 
+       class="btn btn-success">
+       Upload
+   </button>
+</div>
