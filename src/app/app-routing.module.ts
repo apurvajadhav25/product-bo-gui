@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './component/category/category.component';
+import { ConfigurationComponent } from './component/configuration/configuration.component';
 import { Filter1Component } from './component/filter1/filter1.component';
 import { Filter2Component } from './component/filter2/filter2.component';
 import { Filter3Component } from './component/filter3/filter3.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path: 'filter2', component: Filter2Component},
       {path: 'filter3', component: Filter3Component},
       {path: 'filter4', component: Filter4Component},
+      {path: 'configuration', component: ConfigurationComponent},
 
     ]
 }
