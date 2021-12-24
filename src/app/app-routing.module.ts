@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdvertisementComponent } from './component/advertisement/advertisement.component';
 import { CategoryComponent } from './component/category/category.component';
 import { ConfigurationComponent } from './component/configuration/configuration.component';
 import { Filter1Component } from './component/filter1/filter1.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
       {path: 'filter3', component: Filter3Component},
       {path: 'filter4', component: Filter4Component},
       {path: 'configuration', component: ConfigurationComponent},
+      {path: 'advertisement', component: AdvertisementComponent},
 
     ]
 }

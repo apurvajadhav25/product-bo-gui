@@ -24,11 +24,16 @@ export class ImageComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    this.getImages()
+    console.log("welcome")
 
+  }
+
+  getImages(){
     this.service.getImages(this.config.data.id).subscribe(images1=>{
       this.images= images1;
-     // console.log(this.images)
     })
+    
   }
 
   onChange(event: any) {
@@ -40,16 +45,17 @@ export class ImageComponent implements OnInit {
 
   onUpload() {
     this.service.upload(this.myFiles,this.config.data.id).subscribe((r) => {
-          console.log(r)
+        this.ngOnInit()
             }
          );
+        // this.getImages()
         }  
    
   deleteImage(id: number) {
     this.service.deleteImage(id).subscribe((data) => {
-      //this.ngOnInit();
-     // this.getJewelleries();
+    
     });
+    this.ngOnInit()
   }
 
   onCheckboxChange(id: number){

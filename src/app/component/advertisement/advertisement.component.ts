@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Filter1Service } from 'src/app/service/filter1.service';
+import { AdvertisementService } from 'src/app/service/advertisement/advertisement.service';
 
 @Component({
-  selector: 'app-filter1',
-  templateUrl: './filter1.component.html',
-  styleUrls: ['./filter1.component.css']
+  selector: 'app-advertisement',
+  templateUrl: './advertisement.component.html',
+  styleUrls: ['./advertisement.component.css']
 })
-export class Filter1Component implements OnInit {
+export class AdvertisementComponent implements OnInit {
 
   editEnabled = false;
   jewelleryForm!: FormGroup;
@@ -16,19 +16,22 @@ export class Filter1Component implements OnInit {
   submitted = false;
   display: boolean = false;
 
-  constructor(private service: Filter1Service) { }
+  constructor(private service: AdvertisementService) { }
 
   ngOnInit(): void {
     this.jewelleryForm = new FormGroup({
       name: new FormControl(''),
+      imagePath: new FormControl(''),
       isEnable: new FormControl(''),
     })
 
-    this.getFilters();
+    this.getAdvertisements();
   }
 
-  getFilters() {
-    this.service.getFilters().subscribe((data) => {
+  getAdvertisements() {
+    this.service.getAdvertisements()
+      .subscribe((data) => {
+        console.log(JSON.stringify(data));
         this.jewelleries = data;
         if(this.jewelleries.length===0) {
           this.isResult=false;
@@ -48,8 +51,9 @@ export class Filter1Component implements OnInit {
   onRowEditSave(customer: any, index: number) {
     console.log(index);
     this.editEnabled = false;
-    this.service.editFilter(customer).subscribe((data) => {
-    this.getFilters();
+    customer.imagePath.split(",")
+    this.service.editAdvertisement(customer).subscribe((data) => {
+      this.getAdvertisements();
     });
     console.log('Row edit saved');
   }
@@ -62,10 +66,10 @@ export class Filter1Component implements OnInit {
 
   deleteFilter(customer: any, index: number) {
     console.log(index);
-    this.service.deleteFilter(customer).subscribe((data) => {
-
+    this.service.deleteAdvertisement(customer).subscribe((data) => {
+      this.ngOnInit();
+     // this.getJewelleries();
     });
-    this.ngOnInit();
   }
 
   show() {
@@ -79,12 +83,14 @@ export class Filter1Component implements OnInit {
     if (this.jewelleryForm?.invalid) {
       return;
     }
-    this.service.createFilter(this.jewelleryForm?.value).subscribe(data=>{
+    this.service.createAdvertisement(this.jewelleryForm?.value).subscribe(data=>{
       this.ngOnInit();
       console.log(data);
     });
-    this.getFilters();
+    this.getAdvertisements();
     this.display=false;
   }
+
+ 
 
 }

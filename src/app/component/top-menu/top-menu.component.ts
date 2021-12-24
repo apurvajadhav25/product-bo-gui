@@ -39,6 +39,9 @@ export class TopMenuComponent implements OnInit {
       },
       {
           label: 'Payment', routerLink: 'payment'
+      },
+      {
+          label: 'Advertisement', routerLink: 'advertisement'
       }
   ]
   }

@@ -36,6 +36,7 @@ import { Filter2Component } from './component/filter2/filter2.component';
 import { Filter3Component } from './component/filter3/filter3.component';
 import { Filter4Component } from './component/filter4/filter4.component';
 import { ConfigurationComponent } from './component/configuration/configuration.component';
+import { AdvertisementComponent } from './component/advertisement/advertisement.component';
 
 
 
@@ -53,6 +54,7 @@ import { ConfigurationComponent } from './component/configuration/configuration.
     Filter3Component,
     Filter4Component,
     ConfigurationComponent,
+    AdvertisementComponent,
   
   ],
   imports: [
