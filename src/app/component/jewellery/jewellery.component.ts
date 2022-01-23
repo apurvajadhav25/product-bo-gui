@@ -45,17 +45,22 @@ export class JewelleryComponent  implements OnInit {
   display: boolean = false;
   filter1: any
   filter2: any
+  filter3: any
   
   constructor(public dialogService: DialogService,
               private service: JewelleryService,
-              private filterService: Filter1Service,
-              private filter2Service: Filter2Service
+              private filter1Service: Filter1Service,
+              private filter2Service: Filter2Service,
+              private filter3Service: Filter2Service
                 ) { 
-                  this.filterService.getFilters().subscribe((data)=>{
+                  this.filter1Service.getFilters().subscribe((data)=>{
                     this.filter1= data
                   })
                   this.filter2Service.getFilters().subscribe((data)=>{
                     this.filter2= data
+                  })
+                  this.filter3Service.getFilters().subscribe((data)=>{
+                    this.filter3= data
                   })
                 
                 
@@ -107,6 +112,7 @@ export class JewelleryComponent  implements OnInit {
     this.editEnabled = false;
     customer.filter1= customer.filter1.name
     customer.filter2= customer.filter2.name
+    customer.filter3= customer.filter3.name
     console.log(customer)
     this.service.editJewellery(customer).subscribe((data) => {
       this.getJewelleries();

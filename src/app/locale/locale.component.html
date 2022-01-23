@@ -3,16 +3,13 @@
         <form [formGroup]="jewelleryForm" (ngSubmit)="onSubmit()">
             
             <div class="ui-inputgroup row">
-                <input type="text" formControlName="name" size="30" pInputText placeholder="Name">  
+                <input type="text" formControlName="code" size="30" pInputText placeholder="Code">  
             </div>
 
             <div class="ui-inputgroup row">
-                <input type="text" formControlName="imagePath" size="30" pInputText placeholder="Image Path">  
+                <input type="text" formControlName="language" size="30" pInputText placeholder="Language">  
             </div>
 
-            <div class="ui-inputgroup row">
-                <input type="text" formControlName="isEnable" size="30" pInputText placeholder="Enable">  
-            </div>
             <div class="ui-inputgroup button">
                 <button pButton class="ui-button-add" label="Save" ></button> 
             </div>
@@ -21,15 +18,14 @@
 </p-dialog>
 
 <div class="add-customer">
-    <button pButton type="button" class="ui-button-add" style="margin-right: .5em" (click)="show()">Add Advertisement</button>
+    <button pButton type="button" class="ui-button-add" style="margin-right: .5em" (click)="show()">Add Locale Translation</button>
 </div>
 <div class="data-table">
     <p-table class="customers" [value]="jewelleries" dataKey="id" editMode="row" [paginator]="true" [rows]="6">
         <ng-template pTemplate="header">
             <tr>
-                <th>Name</th>
-                <!-- <th>Image Path</th> -->
-                <th>Enable</th>
+                <th>Code</th>
+                <th>Language</th>
                 <th></th>
             </tr>
         </ng-template>
@@ -38,42 +34,20 @@
                 <td>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.name">
+                            <input pInputText type="text" [(ngModel)]="rowData.code">
                         </ng-template>
                         <ng-template pTemplate="output">
-                            {{rowData.name}}
+                            {{rowData.code}}
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <!-- <td>
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                           <input pInputText type="text" [(ngModel)]="rowData.imagePath"> 
-                            <div class="text-center">
-                                <input class="form-control" type="file"  multiple
-                                class="form-control"
-                                        (change)="onChange($event)">
-                              
-                                <button (click)="onUpload()" 
-                                    class="btn btn-success">
-                                    Upload
-                                </button>
-                             </div>
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                           
-                             {{rowData.imagePath}}
-                        </ng-template>
-                    </p-cellEditor>
-                    
-                </td> -->
                 <td>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.isEnable">
+                            <input pInputText type="text" [(ngModel)]="rowData.language">
                         </ng-template>
                         <ng-template pTemplate="output">
-                            {{rowData.isEnable}}
+                            {{rowData.language}}
                         </ng-template>
                     </p-cellEditor>
                 </td>
@@ -89,10 +63,7 @@
                     <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check"
                         class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(rowData, ri)"></button>
                     <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times"
-                        class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)"></button>
-
-                    <button *ngIf="!editEnabled" pButton type="button"  icon="pi pi-folder-open"
-                        class="ui-button-info" style="margin-right: .5em" (click)="showImage(rowData.id,rowData.name)"></button>    
+                    class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)"></button>
                 </td>
             </tr>
         </ng-template>

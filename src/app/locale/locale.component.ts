@@ -1,37 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ConfigurationService } from 'src/app/service/configuration/configuration.service';
+import { LocaleService } from '../service/locale/locale.service';
 
 @Component({
-  selector: 'app-configuration',
-  templateUrl: './configuration.component.html',
-  styleUrls: ['./configuration.component.css']
+  selector: 'app-locale',
+  templateUrl: './locale.component.html',
+  styleUrls: ['./locale.component.css']
 })
-export class ConfigurationComponent implements OnInit {
+export class LocaleComponent implements OnInit {
+
   editEnabled = false;
   jewelleryForm!: FormGroup;
   jewelleries: any;
   isResult: boolean = true;
   submitted = false;
   display: boolean = false;
-  configuration = ['email','address','mobile number','filter1','filter2','filter3','filter4']
 
-  constructor(private service: ConfigurationService) { }
+  constructor(private service: LocaleService) { }
 
   ngOnInit(): void {
     this.jewelleryForm = new FormGroup({
-      key: new FormControl(''),
-      value: new FormControl(''),
+      code: new FormControl(''),
       language: new FormControl(''),
+      
     })
 
-    this.getFilters();
+    this.getLocale();
   }
 
-  getFilters() {
-    this.service.getConfigurations()
-      .subscribe((data) => {
-        console.log(JSON.stringify(data));
+  getLocale() {
+    this.service.getLocales().subscribe((data) => {
         this.jewelleries = data;
         if(this.jewelleries.length===0) {
           this.isResult=false;
@@ -49,11 +47,10 @@ export class ConfigurationComponent implements OnInit {
   }
 
   onRowEditSave(customer: any, index: number) {
-    //customer.key= customer.key.name
-    console.log(customer);
+    console.log(index);
     this.editEnabled = false;
-    this.service.editConfiguration(customer).subscribe((data) => {
-      this.getFilters();
+    this.service.editLocale(customer).subscribe((data) => {
+    this.getLocale();
     });
     console.log('Row edit saved');
   }
@@ -66,10 +63,10 @@ export class ConfigurationComponent implements OnInit {
 
   deleteFilter(customer: any, index: number) {
     console.log(index);
-    this.service.deleteConfiguration(customer).subscribe((data) => {
-      this.ngOnInit();
-     // this.getJewelleries();
+    this.service.deleteLocale(customer).subscribe((data) => {
+
     });
+    this.ngOnInit();
   }
 
   show() {
@@ -83,13 +80,12 @@ export class ConfigurationComponent implements OnInit {
     if (this.jewelleryForm?.invalid) {
       return;
     }
-    this.service.createConfiguration(this.jewelleryForm?.value).subscribe(data=>{
+    this.service.createLocale(this.jewelleryForm?.value).subscribe(data=>{
       this.ngOnInit();
       console.log(data);
     });
-    this.getFilters();
+    this.getLocale();
     this.display=false;
   }
-
 
 }

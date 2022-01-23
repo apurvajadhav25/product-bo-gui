@@ -37,6 +37,9 @@ import { Filter3Component } from './component/filter3/filter3.component';
 import { Filter4Component } from './component/filter4/filter4.component';
 import { ConfigurationComponent } from './component/configuration/configuration.component';
 import { AdvertisementComponent } from './component/advertisement/advertisement.component';
+import { AdvertisementImageComponent } from './component/advertisement/advertisement-image/advertisement-image.component';
+import { LocaleComponent } from './locale/locale.component';
+import { LocaleTranslationComponent } from './component/locale-translation/locale-translation.component';
 
 
 
@@ -55,6 +58,9 @@ import { AdvertisementComponent } from './component/advertisement/advertisement.
     Filter4Component,
     ConfigurationComponent,
     AdvertisementComponent,
+    AdvertisementImageComponent,
+    LocaleComponent,
+    LocaleTranslationComponent,
   
   ],
   imports: [

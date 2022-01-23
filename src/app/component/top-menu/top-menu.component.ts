@@ -42,7 +42,13 @@ export class TopMenuComponent implements OnInit {
       },
       {
           label: 'Advertisement', routerLink: 'advertisement'
-      }
+      },
+      {
+          label: 'Locale', routerLink: 'locale'
+      },
+      {
+        label: 'LocaleTranslation', routerLink: 'localeTranslation'
+    }
   ]
   }
 

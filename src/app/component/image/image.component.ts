@@ -12,8 +12,8 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 export class ImageComponent implements OnInit {
   myFiles:string [] = [];
   images: any;
-  id!: number;
-  selectedValues: string[] = [];
+  id!: any;
+  selectedValues: string = '57';
   i: any;
   p: any;
   u: any;
@@ -32,6 +32,7 @@ export class ImageComponent implements OnInit {
   getImages(){
     this.service.getImages(this.config.data.id).subscribe(images1=>{
       this.images= images1;
+      console.log(this.images)
     })
     
   }

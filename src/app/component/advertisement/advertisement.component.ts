@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdvertisementService } from 'src/app/service/advertisement/advertisement.service';
+import { AdvertisementImageComponent } from './advertisement-image/advertisement-image.component';
 
 @Component({
   selector: 'app-advertisement',
@@ -15,8 +17,12 @@ export class AdvertisementComponent implements OnInit {
   isResult: boolean = true;
   submitted = false;
   display: boolean = false;
+  myFiles:string [] = [];
+  id: number = 0
 
-  constructor(private service: AdvertisementService) { }
+  constructor(private service: AdvertisementService,
+              public dialogService: DialogService
+              ) { }
 
   ngOnInit(): void {
     this.jewelleryForm = new FormGroup({
@@ -43,6 +49,7 @@ export class AdvertisementComponent implements OnInit {
   }
 
   onRowEditInit(customer: any, index: number) {
+    this.id = customer.id
     console.log(index);
     this.editEnabled = true;
     console.log('Row edit initialized');
@@ -90,6 +97,34 @@ export class AdvertisementComponent implements OnInit {
     this.getAdvertisements();
     this.display=false;
   }
+
+  onChange(event: any) {
+    //this.file = event.target.files[0];
+    for (var i = 0; i < event.target.files.length; i++) { 
+      this.myFiles.push(event.target.files[i]);
+      console.log(this.myFiles)
+  }
+  }
+
+  onUpload() {
+    console.log(this.id)
+    this.service.upload(this.myFiles,this.id).subscribe((r) => {
+      this.ngOnInit()
+          }
+       );
+
+        } 
+  showImage(id: any,name: any) {
+    console.log(id)
+    const ref = this.dialogService.open(AdvertisementImageComponent, {
+      header: 'Add Images',
+      width: '350px',
+      data:{
+            "id": id,
+            "name": name
+            }
+          });
+        }      
 
  
 

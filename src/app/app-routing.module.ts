@@ -8,8 +8,10 @@ import { Filter2Component } from './component/filter2/filter2.component';
 import { Filter3Component } from './component/filter3/filter3.component';
 import { Filter4Component } from './component/filter4/filter4.component';
 import { JewelleryComponent } from './component/jewellery/jewellery.component';
+import { LocaleTranslationComponent } from './component/locale-translation/locale-translation.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { TopMenuComponent } from './component/top-menu/top-menu.component';
+import { LocaleComponent } from './locale/locale.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'jewellery/category', pathMatch: 'full'},
@@ -25,7 +27,8 @@ const routes: Routes = [
       {path: 'filter4', component: Filter4Component},
       {path: 'configuration', component: ConfigurationComponent},
       {path: 'advertisement', component: AdvertisementComponent},
-
+      {path: 'locale', component: LocaleComponent},
+      {path: 'localeTranslation', component: LocaleTranslationComponent},
     ]
 }
 ];

@@ -4,6 +4,7 @@
             
             <div class="ui-inputgroup row">
                 <input type="text" formControlName="key" size="30" pInputText placeholder="Key">  
+                <!-- <p-dropdown [options]="configuration" [(ngModel)]="configuration" ></p-dropdown> -->
             </div>
 
             <div class="ui-inputgroup row">
@@ -40,6 +41,7 @@
                     <p-cellEditor>
                         <ng-template pTemplate="input">
                             <input pInputText type="text" [(ngModel)]="rowData.key">
+                            <!-- <p-dropdown [options]="jewelleries" [(ngModel)]="rowData.jewelleries" optionLabel="key"></p-dropdown> -->
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{rowData.key}}
